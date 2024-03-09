@@ -5,7 +5,8 @@ Although there is no single data zoning taxonomy, many varieties of data zone na
 3. Consumer Layer
 
 ## 1. Ingestion Layer
-In a Lakehouse, the ingestion layer represents the data lake, in that it is an immutable store of all source data being ingested.  The period of immutability can be months, years or infinite (although cost can become a factor in large-scale environments). This data remains unprocessed, uncomformed and free of any changes or corrections.  In this way, any Lakehouse datasets/marts can always be fully rebuilt.  
+In a Lakehouse appliance or ecosystem, the ingestion layer represents the data lake, in that it is an immutable store of all source data being ingested.  The period of immutability can be months, years or infinite (although cost can become a factor in large-scale environments). This data remains unprocessed, uncomformed and free of any changes or corrections.  In this way, any Lakehouse datasets/marts can always be fully rebuilt.  
+Additionally, original data formatting is never lost and the lake contains an archive of data that can be useful for many scenarios such as historical analysis, business process replay, or to restore data to operational systems which need recovery.  
 
 Ingestion layer data needs to be protected from changes, deletions and updates.   The purpose of this layer is not to makes sense of the data, or to apply context.  It is only to store/persist the data in a way that it can be predictably discovered and used by processes which require it.  
 
@@ -28,7 +29,7 @@ On data lake file systems (large-scale object stores,  HDFS, etc.), this equates
 └── Consumer Layer
 ```
 
-This simple organisation allows many data management features to be applied.  For example, rules can be created for automatic metadata tagging of business context, application of data access policies, and automatic execution of archival/deletion processes.  
+This simple organisation allows many data management features to be applied.  For example, rules can be created for automatic metadata tagging of business context (within data governance tools), application of data access policies, and automatic execution of archival/deletion processes.  
 
 A simple example of a daily database table ingest of a generic financial policy with payments is shown below.  
 <br>
@@ -76,7 +77,7 @@ The datasets created in this layer represent a direct copy of the entities being
 **DB Tables**  
 Because database table copies are stored in compressed formats such as Parquet, there is no need to project (select) columns, although for large data tables, a filter to retrieve new or changed records is an advantage.  For tables where changes cannot be identified, the entire table can be copied at every ingest frequency.  
 **Files**  
-File-based data such as JSON or XML should be stored in their native formats.  Although these formats are not compressed, they generally represent smaller data payloads such as messages or more targeted and specific content.  
+File-based data such as JSON or XML are usually stored in their native formats.  Although these formats are not compressed, they generally represent smaller data payloads such as messages or more targeted and specific content.  
 <br>
   
 ## 2. Warehouse/Lakehouse Layer
