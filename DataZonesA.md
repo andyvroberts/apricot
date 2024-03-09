@@ -1,5 +1,5 @@
 # Big Data Management Example A
-Although there is no single fixed data zoning methodology, many varieties of data zone names and conventions exist.  However, in abstract the following 3 data lake zones are usually represented. These can be thought of visually as layers:  
+Although there is no single data zoning taxonomy, many varieties of data zone names and conventions exist.  However, in abstract the following 3 data lake zones are usually represented. These can be thought of visually as layers:  
 1. Ingestion Layer
 2. Warehouse/Lakehouse Layer
 3. Consumer Layer
@@ -9,45 +9,66 @@ In a Lakehouse, the ingestion layer represents the data lake, in that it is an i
 
 Ingestion layer data needs to be protected from changes, deletions and updates.   The purpose of this layer is not to makes sense of the data, or to apply context.  It is only to store/persist the data in a way that it can be predictably discovered and used by processes which require it.  
 
-A simple example of a daily database table ingest is shown below.  
+The most common method of enabling improved data governance and data management for Ingest layers, is to create a well-understood partition scheme.  
+On data lake file systems (large-scale object stores,  HDFS, etc.), this equates to a folder structure.  
+```bash
+├── Ingest Layer
+│   ├── DataSource
+│   │   └── DataEntity
+│   │       └── Year/Month/Day
+│   │           └── DataFile001
+│   │           └── DataFile002
+│   │           └── ...
+│   └── DataSource
+│   │   └── DataEntity
+│   │       └── Year/Month
+│   │           └── DataFile001
+│   └── DataSource
+├── Lakehouse Layer
+└── Consumer Layer
+```
+
+This simple organisation allows many data management features to be applied.  For example, rules can be created for automatic metadata tagging of business context, application of data access policies, and automatic execution of archival/deletion processes.  
+
+A simple example of a daily database table ingest of a generic financial policy with payments is shown below.  
 <br>
 
 ```mermaid
 flowchart TD
-pdrPol[Policy]
-pdrPrem[Premium]
-subPol[Policy]
-subPrem[Premium]
+APol[Policy]
+APrem[Payment]
+BPol[Policy]
+BPrem[Payment]
 subgraph ds[Database\nSources]
     direction LR
-    subgraph PDR
-        pdrPol
-        pdrPrem
+    subgraph System-A
+        APol
+        APrem
     end
-    subgraph Subscribe
-        subPol
-        subPrem
+    subgraph System-B
+        BPol
+        BPrem
     end
 end
 subgraph il[Ingest Layer]
     direction TB
-    subgraph pol1[PDR/Policy/2024/02/28/]
+    subgraph pol1[SysA/Policy/2024/02/28/]
         p1[policy.parquet]
     end
-    subgraph pol2 [Subscribe/Policy/2024/02/28/]
+    subgraph pol2 [SysB/Policy/2024/02/28/]
         p2[policy.parquet]
     end
-    subgraph prem1[PDR/Premium/2024/02/28/]
-        p3[premium.parquet]
+    subgraph prem1[SysA/Payment/2024/02/28/]
+        p3[payment.parquet]
     end
-    subgraph prem2[Subscribe/Premium/2024/02/28/]
-        p4[premium.parquet]
+    subgraph prem2[SysB/Payment/2024/02/28/]
+        p4[payment.parquet]
     end
 end
-pdrPol ----> pol1
-subPol ----> pol2
-pdrPrem ----> prem1
-subPrem ----> prem2
+APol ----> pol1
+BPol ----> pol2
+APrem ----> prem1
+BPrem ----> prem2
 ```
 <br>
 
