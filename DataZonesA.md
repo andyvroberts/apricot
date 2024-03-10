@@ -97,10 +97,35 @@ In combination, the release of the Delta file container (and others) in 2019, al
 
 A Lakehouse is:
 1. the ability to use consumption-based cloud services
-3. the ability to store data in user-oriented datasets (this usually means de-normalization and data duplication)
+3. the ability to store data in non-relational datasets (this usually means de-normalization and data duplication)
 2. the ability to use the SQL programming model 
    
-For the Lakehouse Layer, the focus is on point 2.  
+For the Lakehouse Layer, the focus is on point 2.  There are several patterns that are particularly suitable to effectively utilising this Layer.
+
+### Consolidation
+A dataset where multiple sources of similar data entity types are joined together to provide a consolidated view.  These datasets are used individually or as an input to other dataset combinations.  
+
+<br>
+
+```mermaid
+flowchart LR
+subgraph il[Ingest Layer]
+    Customer
+    Broker
+    Dealer
+    Intermediary
+end
+subgraph ll[Lakehouse Layer]
+    Counterparty
+end
+Customer ----> Counterparty
+Broker ----> Counterparty
+Dealer ----> Counterparty
+Intermediary ----> Counterparty
+```
+<br>
+
+### Time-Series
 
 
 
