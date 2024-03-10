@@ -83,13 +83,13 @@ File-based data such as JSON or XML are usually stored in their native formats. 
 <br>
   
 ## 2. Lakehouse Layer
-The Lakeyouse layer contains the superset of all data that is required by data consumers.  
+The Lakehouse layer contains the superset of all data that is required by data consumers.  
 The technology term 'Lakehouse' is a portmanteau of data-lake and data-warehouse.  
 
 **Data-Lake**  
 In terms of big data, a data-lake is an evolution of Hadoop's distributed file system, where large block sizes and block replication factors allowed very large files to be locally processed in parallel.  This data processing ecosystem operated solely on read-only (WORM) file based datasets and encouraged de-normalized data representations in columnnar containers as an aid to efficency and speed, allowing large scale analytics which had never before been possible.  
 **Data-Warehouse**  
-A traditional data-warehouse is a methodology for organising data into de-normalized views, but using underlying relational database management systems.   Because an RDBMS is resoure constrained, the storage and query of very large tables (datasets) required a design which fragmented data into smaller more manageable units. The data is then be re-combined at query time, by using one central table providing the link to all the others.  This is the technical underlying purpose of Facts and Dimensions within a Dimensional Data Model.  
+A traditional data-warehouse is a methodology for organising data into de-normalized views, but using underlying relational database management systems.   Because an RDBMS is resource constrained, the storage and query of very large tables (datasets) required a design which fragmented data into smaller more manageable units. The data is then be re-combined at query time, by using one central table providing the link to all the others.  This is the technical underlying purpose of Facts and Dimensions within a Dimensional Data Model.  
 **Lakehouse**  
 The original big data architecture (Hadoop in 2008) using map-reduce is typically used by large organisations that have the very large data volumes, the infrastructure resources, and dedicated teams with the appropriate skills.  This leaves it relatively unaccesible to everyone else.  
 The advent of cloud (data-center) providers and their consumption-based services, has made low-cost object stores that provide some big data features available to small and medium enterprises.  
