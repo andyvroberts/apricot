@@ -103,7 +103,7 @@ A Lakehouse is:
 For the Lakehouse Layer, the focus is on point 2.  There are several patterns that are particularly suitable to effectively utilising this Layer.
 
 ### Consolidation
-A dataset where multiple sources of similar data entity types are joined together to provide a consolidated view.  These datasets are used individually or as an input to other dataset combinations.  
+A dataset where multiple sources of similar (or the same) data entity types are joined together to provide a consolidated view.  These datasets are used individually or as an input to other dataset combinations.  
 
 <br>
 
@@ -124,6 +124,30 @@ Dealer ----> Counterparty
 Intermediary ----> Counterparty
 ```
 <br>
+
+**Example Counterparty ER**  
+The Counterparty dataset is a de-normalized combination of the following relational model, where a counterpary with two addresses, the counterparty details will be duplicated on a second record that contains the second address details.
+
+```mermaid
+erDiagram
+    Counterparty ||..o{ Contact-Address : "has"
+```
+
+**Example Payment ER**   
+In another example, a consildated payment dataset models an exclusive-or relationship, always giving a one-to-one child for each payment, athough the ER model looks more complicated.  The resulting consolidation is non-redundant but may have sparsely populated data elements.  File width is not an issue.       
+```mermaid
+erDiagram
+    Payment {enum payment-type}
+    BACS {col ElementB1 col ElementB2}
+    CHAPS {col ElementC1 col ElementC2 col ElementC3}
+    Faster-Payment {col ElementFP1 col ElementFP2}
+    SWIFT {col ElementS1}
+    Payment ||..o| BACS : "may be a"
+    Payment ||..o| CHAPS : "may be a"
+    Payment ||..o| Faster-Payment : "may be a"
+    Payment ||..o| SWIFT : "may be a"
+```
+
 
 ### Time-Series
 
