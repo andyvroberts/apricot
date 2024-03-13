@@ -125,16 +125,16 @@ Intermediary ----> Counterparty
 ```
 <br>
 
-**Example Counterparty ER**  
-The Counterparty dataset is a de-normalized combination of the following relational model, where a counterpary with two addresses, the counterparty details will be duplicated on a second record that contains the second address details.
+**Example Counterparty ERD**  
+The Counterparty dataset is a de-normalized combination of the following relational model, where a counterpary with two addresses has duplicated details on a second record that contains the second address.
 
 ```mermaid
 erDiagram
     Counterparty ||..o{ Contact-Address : "has"
 ```
 
-**Example Payment ER**   
-In another example, a consildated payment dataset models an exclusive-or relationship, always giving a one-to-one child for each payment, athough the ER model looks more complicated.  The resulting consolidation is non-redundant but may have sparsely populated data elements.  File width is not an issue.       
+**Example Payment ERD**   
+In another example, a consildated payment dataset models an exclusive-or relationship, always giving a one-to-one child for each payment record, athough the ER model looks more complicated.  The resulting consolidation is non-redundant but may have sparsely populated data elements.  File width is not an issue.       
 ```mermaid
 erDiagram
     Payment {enum payment-type}
@@ -150,8 +150,35 @@ erDiagram
 
 
 ### Time-Series
+A dataset where homogenous records (the same physical shape) are created to represent a temporal order.  These are normally one of two types:
+1. unique records that occur only once, but in sequence
+2. a history of change to the same record, in a sequence
+  
+The following example shows creation of a time series represnting Billing detail events for telecommunications data.  
 
+<br>
 
+```mermaid
+flowchart LR
+subgraph il[Ingest Layer]
+    Customer
+    cl[Call Log]
+    cr[Charge Rates]
+    cc[Currency Conversion]
+end
+subgraph ll[Lakehouse Layer]
+    a1[Customer Calls]
+    b1[Local Rates]
+    Billing[Billing Events]
+end
+Customer ----> a1
+cl ----> a1
+cr ----> b1
+cc ----> b1
+a1 ----> Billing
+b1 ----> Billing
+```
+<br>
 
 
 
