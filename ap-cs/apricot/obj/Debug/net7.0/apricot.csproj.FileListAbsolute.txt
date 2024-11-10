@@ -1,0 +1,15 @@
+/home/avrob/github/apricot/ap-cs/apricot/obj/Debug/net7.0/apricot.csproj.AssemblyReference.cache
+/home/avrob/github/apricot/ap-cs/apricot/obj/Debug/net7.0/apricot.GeneratedMSBuildEditorConfig.editorconfig
+/home/avrob/github/apricot/ap-cs/apricot/obj/Debug/net7.0/apricot.AssemblyInfoInputs.cache
+/home/avrob/github/apricot/ap-cs/apricot/obj/Debug/net7.0/apricot.AssemblyInfo.cs
+/home/avrob/github/apricot/ap-cs/apricot/obj/Debug/net7.0/apricot.csproj.CoreCompileInputs.cache
+/home/avrob/github/apricot/ap-cs/apricot/bin/Debug/net7.0/apricot
+/home/avrob/github/apricot/ap-cs/apricot/bin/Debug/net7.0/apricot.deps.json
+/home/avrob/github/apricot/ap-cs/apricot/bin/Debug/net7.0/apricot.runtimeconfig.json
+/home/avrob/github/apricot/ap-cs/apricot/bin/Debug/net7.0/apricot.dll
+/home/avrob/github/apricot/ap-cs/apricot/bin/Debug/net7.0/apricot.pdb
+/home/avrob/github/apricot/ap-cs/apricot/obj/Debug/net7.0/apricot.dll
+/home/avrob/github/apricot/ap-cs/apricot/obj/Debug/net7.0/refint/apricot.dll
+/home/avrob/github/apricot/ap-cs/apricot/obj/Debug/net7.0/apricot.pdb
+/home/avrob/github/apricot/ap-cs/apricot/obj/Debug/net7.0/apricot.genruntimeconfig.cache
+/home/avrob/github/apricot/ap-cs/apricot/obj/Debug/net7.0/ref/apricot.dll
